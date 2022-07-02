@@ -1,0 +1,2 @@
+/p/software/jurecadc/stages/2022/software/binutils/2.37-GCCcore-11.2.0/bin/ar qc libnestkernel.a CMakeFiles/nestkernel.dir/test.cpp.o CMakeFiles/nestkernel.dir/event.cpp.o
+/p/software/jurecadc/stages/2022/software/binutils/2.37-GCCcore-11.2.0/bin/ranlib libnestkernel.a
