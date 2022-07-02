@@ -25,12 +25,14 @@ add_subdirectory( libnestutil )
 add_subdirectory( thirdparty )
 
 include_directories( sli nestkernel libnestutil thirdparty ) 
+link_directories(sli nestkernel libnestutil thirdparty)
 set( ALL_LIBS
   "-lnestkernel" 
   "-lnest")
 
 set( ALL_INCLUDES sli nestkernel libnestutil thirdparty )
-target_link_libraries(toyapp nestutil nestkernel )
+#target_link_libraries(toyapp nestutil nestkernel )
+target_link_libraries(toyapp nestkernel )
 
 target_include_directories( toyapp PRIVATE
     ${PROJECT_SOURCE_DIR}/thirdparty

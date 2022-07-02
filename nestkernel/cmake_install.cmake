@@ -42,3 +42,7 @@ if(NOT DEFINED CMAKE_OBJDUMP)
   set(CMAKE_OBJDUMP "/p/software/jurecadc/stages/2022/software/binutils/2.37-GCCcore-11.2.0/bin/objdump")
 endif()
 
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/p/scratch/cjinb33/kitayama1/projects/toyapp/nestkernel/libnestkernel.a")
+endif()
+

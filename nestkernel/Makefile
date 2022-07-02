@@ -65,6 +65,30 @@ CMAKE_BINARY_DIR = /p/scratch/cjinb33/kitayama1/projects/toyapp
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/p/software/jurecadc/stages/2022/software/CMake/3.21.1-GCCcore-11.2.0/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/p/software/jurecadc/stages/2022/software/CMake/3.21.1-GCCcore-11.2.0/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/p/software/jurecadc/stages/2022/software/CMake/3.21.1-GCCcore-11.2.0/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/p/software/jurecadc/stages/2022/software/CMake/3.21.1-GCCcore-11.2.0/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
@@ -74,6 +98,27 @@ edit_cache:
 # Special rule for the target edit_cache
 edit_cache/fast: edit_cache
 .PHONY : edit_cache/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/p/software/jurecadc/stages/2022/software/CMake/3.21.1-GCCcore-11.2.0/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/p/software/jurecadc/stages/2022/software/CMake/3.21.1-GCCcore-11.2.0/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -154,6 +199,30 @@ event.cpp.s:
 	cd /p/scratch/cjinb33/kitayama1/projects/toyapp && $(MAKE) $(MAKESILENT) -f nestkernel/CMakeFiles/nestkernel.dir/build.make nestkernel/CMakeFiles/nestkernel.dir/event.cpp.s
 .PHONY : event.cpp.s
 
+node.o: node.cpp.o
+.PHONY : node.o
+
+# target to build an object file
+node.cpp.o:
+	cd /p/scratch/cjinb33/kitayama1/projects/toyapp && $(MAKE) $(MAKESILENT) -f nestkernel/CMakeFiles/nestkernel.dir/build.make nestkernel/CMakeFiles/nestkernel.dir/node.cpp.o
+.PHONY : node.cpp.o
+
+node.i: node.cpp.i
+.PHONY : node.i
+
+# target to preprocess a source file
+node.cpp.i:
+	cd /p/scratch/cjinb33/kitayama1/projects/toyapp && $(MAKE) $(MAKESILENT) -f nestkernel/CMakeFiles/nestkernel.dir/build.make nestkernel/CMakeFiles/nestkernel.dir/node.cpp.i
+.PHONY : node.cpp.i
+
+node.s: node.cpp.s
+.PHONY : node.s
+
+# target to generate assembly for a file
+node.cpp.s:
+	cd /p/scratch/cjinb33/kitayama1/projects/toyapp && $(MAKE) $(MAKESILENT) -f nestkernel/CMakeFiles/nestkernel.dir/build.make nestkernel/CMakeFiles/nestkernel.dir/node.cpp.s
+.PHONY : node.cpp.s
+
 test.o: test.cpp.o
 .PHONY : test.o
 
@@ -185,11 +254,18 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... nestkernel"
 	@echo "... event.o"
 	@echo "... event.i"
 	@echo "... event.s"
+	@echo "... node.o"
+	@echo "... node.i"
+	@echo "... node.s"
 	@echo "... test.o"
 	@echo "... test.i"
 	@echo "... test.s"
